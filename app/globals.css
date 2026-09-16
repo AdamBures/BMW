@@ -420,3 +420,11 @@ body {
   70% { box-shadow: 0 0 0 10px rgba(84, 169, 232, 0); }
   100% { box-shadow: 0 0 0 0 rgba(84, 169, 232, 0); }
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

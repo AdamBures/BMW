@@ -18,7 +18,8 @@ import {
   Settings2,
   CarFront,
   Ruler,
-  BatteryCharging
+  BatteryCharging,
+  ChevronDown
 } from 'lucide-react'
 
 const VEHICLE_MODEL_URL = '/bmw_m5_cs_f90.glb'
@@ -224,7 +225,7 @@ export function M5Showcase() {
         )}
       </AnimatePresence>
 
-      <header className="m5-nav">
+      <header className="m5-nav" style={{ position: 'relative', zIndex: 50 }}>
         <a className="brand" href="#" aria-label="BMW M5 home">
           <span className="brand-roundel">BMW</span>
           <span className="brand-model">BMW M5</span>
@@ -451,40 +452,66 @@ export function M5Showcase() {
       )}
 
       {activeTab === 'Overview' && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} style={{ padding: '24px', maxWidth: '900px', margin: '0 auto', color: '#fff' }}>
-          <h1 style={{ fontSize: '48px', marginBottom: '16px' }}>The All-New BMW M5 (G90)</h1>
-          <p style={{ fontSize: '18px', color: '#a0aab2', marginBottom: '40px' }}>
-            The seventh generation of the high-performance sedan introduces electrified drive for the first time. The M HYBRID system delivers a combined output of 535 kW (727 hp) and a system torque of 1,000 Nm.
-          </p>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-            <div className="metric-card">
-              <BatteryCharging size={24} color="#54a9e8" />
-              <h3 style={{ marginTop: '16px', fontSize: '20px' }}>M HYBRID System</h3>
-              <p style={{ color: '#a0aab2', marginTop: '8px' }}>
-                Combines a high-revving 4.4-liter V8 engine with M TwinPower Turbo technology and a deeply integrated electric motor. The electric motor alone produces 145 kW (197 hp) and 280 Nm of torque.
-              </p>
+        <motion.div 
+          className="hide-scrollbar"
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 0.5 }} 
+          style={{ position: 'absolute', inset: 0, overflowY: 'auto', overflowX: 'hidden', zIndex: 10, background: '#171b21', scrollBehavior: 'smooth' }}
+        >
+          <div style={{ height: '70vh', width: '100%', position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 80px' }}>
+            <div style={{ position: 'absolute', inset: 0, zIndex: -1, background: '#000' }}>
+              <img src="https://bmw.scene7.com/is/image/BMW/Stage-td-sun-protection:16to7?fmt=webp&wid=2560&fit=wrap%2C+1" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', opacity: 0.7 }} alt="BMW M5 Background" />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(23,27,33,1) 100%)' }} />
             </div>
-            <div className="metric-card">
-              <Zap size={24} color="#54a9e8" />
-              <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Electric Range</h3>
-              <p style={{ color: '#a0aab2', marginTop: '8px' }}>
-                The high-voltage battery offers 18.6 kWh of usable energy, enabling an electric range of 67 - 69 kilometers (WLTP) in purely electric mode, with electric speeds up to 140 km/h.
-              </p>
+            
+            <div 
+              onClick={() => {
+                 document.getElementById('overview-content')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              style={{ position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', cursor: 'pointer', opacity: 0.8 }}
+            >
+              <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+                 <ChevronDown size={32} />
+              </motion.div>
             </div>
-            <div className="metric-card">
-              <CarFront size={24} color="#54a9e8" />
-              <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Design</h3>
-              <p style={{ color: '#a0aab2', marginTop: '8px' }}>
-                Prominent wheel arches, heavily sculpted front apron, and model-specific C-pillar surfacing give the new BMW M5 an athletic and monolithic appearance.
-              </p>
-            </div>
-            <div className="metric-card">
-              <Ruler size={24} color="#54a9e8" />
-              <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Weight & Dynamics</h3>
-              <p style={{ color: '#a0aab2', marginTop: '8px' }}>
-                Despite a higher curb weight of 2,435 kg due to the hybrid system, standard Integral Active Steering (rear-wheel steering) and Adaptive M suspension ensure supreme agility.
-              </p>
+          </div>
+
+          <div id="overview-content" style={{ padding: '80px 24px', marginTop: '40vh', maxWidth: '900px', margin: '40vh auto 0 auto', color: '#fff' }}>
+            <h1 style={{ fontSize: '48px', marginBottom: '16px' }}>The All-New BMW M5 (G90)</h1>
+            <p style={{ fontSize: '18px', color: '#a0aab2', marginBottom: '40px' }}>
+              The seventh generation of the high-performance sedan introduces electrified drive for the first time. The M HYBRID system delivers a combined output of 535 kW (727 hp) and a system torque of 1,000 Nm.
+            </p>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+              <div className="metric-card">
+                <BatteryCharging size={24} color="#54a9e8" />
+                <h3 style={{ marginTop: '16px', fontSize: '20px' }}>M HYBRID System</h3>
+                <p style={{ color: '#a0aab2', marginTop: '8px' }}>
+                  Combines a high-revving 4.4-liter V8 engine with M TwinPower Turbo technology and a deeply integrated electric motor. The electric motor alone produces 145 kW (197 hp) and 280 Nm of torque.
+                </p>
+              </div>
+              <div className="metric-card">
+                <Zap size={24} color="#54a9e8" />
+                <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Electric Range</h3>
+                <p style={{ color: '#a0aab2', marginTop: '8px' }}>
+                  The high-voltage battery offers 18.6 kWh of usable energy, enabling an electric range of 67 - 69 kilometers (WLTP) in purely electric mode, with electric speeds up to 140 km/h.
+                </p>
+              </div>
+              <div className="metric-card">
+                <CarFront size={24} color="#54a9e8" />
+                <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Design</h3>
+                <p style={{ color: '#a0aab2', marginTop: '8px' }}>
+                  Prominent wheel arches, heavily sculpted front apron, and model-specific C-pillar surfacing give the new BMW M5 an athletic and monolithic appearance.
+                </p>
+              </div>
+              <div className="metric-card">
+                <Ruler size={24} color="#54a9e8" />
+                <h3 style={{ marginTop: '16px', fontSize: '20px' }}>Weight & Dynamics</h3>
+                <p style={{ color: '#a0aab2', marginTop: '8px' }}>
+                  Despite a higher curb weight of 2,435 kg due to the hybrid system, standard Integral Active Steering (rear-wheel steering) and Adaptive M suspension ensure supreme agility.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
