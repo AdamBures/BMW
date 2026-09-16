@@ -1,0 +1,422 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #171b21;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.m5-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 24px;
+}
+
+.m5-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  color: white;
+}
+.brand-roundel {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: grid; place-items: center;
+  font-size: 6px;
+}
+.brand-model { font-weight: normal; margin-left: 8px; font-size: 18px; }
+.brand-m { color: #54a9e8; font-style: italic; font-size: 20px; font-weight: 800; margin-left: -4px; }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: #a0aab2;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: white;
+}
+.nav-links a.active {
+  border-bottom: 2px solid white;
+  padding-bottom: 4px;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  gap: 32px;
+  min-height: 0;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.canvas-container {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.canvas-controls {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 16px 0;
+  color: #a0aab2;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.canvas-controls button {
+  background: none;
+  border: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 11px;
+}
+.canvas-controls button:hover { color: white; }
+
+.gallery-container {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.gallery-title {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  height: 100%;
+}
+.gallery-item {
+  background: #252a32;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.7;
+}
+
+.right-section {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Scrollbar styles for right section if it overflows */
+.right-section::-webkit-scrollbar { width: 4px; }
+.right-section::-webkit-scrollbar-thumb { background: #333; }
+
+.section-title {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a0aab2;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.metric-sub {
+  font-size: 9px;
+  color: #6c7882;
+}
+
+.metric-visual {
+  margin-top: 12px;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+  width: 100%;
+}
+.bar-chart div {
+  flex: 1;
+  background: linear-gradient(to top, #3a5c78, #609bc9);
+  border-radius: 2px 2px 0 0;
+}
+
+.line-chart {
+  width: 100%; height: 40px;
+}
+.line-chart path { fill: none; stroke: #e34c67; stroke-width: 2; }
+.line-chart path.blue { stroke: #4f8dc0; }
+
+.progress-bar-container {
+  width: 100%;
+}
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  position: relative;
+  margin: 8px 0;
+}
+.progress-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: linear-gradient(to right, #4175a2, #ba5683);
+  width: 35%;
+  border-radius: 2px;
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #6c7882;
+}
+
+.gauge-container {
+  width: 100%;
+  position: relative;
+  height: 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.gauge-arc {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 4px solid #333;
+  border-top-color: #e34c67;
+  border-left-color: #4f8dc0;
+  position: absolute;
+  top: 10px;
+}
+
+.engine-details, .transmission-details {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.engine-details svg, .transmission-details svg { color: #a0aab2; }
+
+.xdrive-card {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.xdrive-left { display: flex; align-items: center; gap: 8px; }
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #a0aab2;
+}
+.toggle-track {
+  width: 32px; height: 16px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+.toggle-thumb {
+  width: 12px; height: 12px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; right: 2px; /* 4WD active */
+}
+
+.hotspots-container {
+  display: flex;
+  gap: 12px;
+}
+.hotspot-card {
+  flex: 1;
+  position: relative;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #000;
+}
+.hotspot-card .title { 
+  position: absolute;
+  bottom: 8px; left: 12px;
+  z-index: 2;
+  font-size: 10px; 
+  font-weight: bold;
+  color: white; 
+  letter-spacing: 0.05em; 
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.hotspot-img { 
+  position: absolute;
+  inset: 0;
+}
+.hotspot-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+}
+.hotspot-img img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  opacity: 0.6; 
+  transition: opacity 0.3s, transform 0.5s;
+}
+.hotspot-card:hover .hotspot-img img {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.start-config-btn {
+  width: 100%;
+  padding: 16px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+.start-config-btn:hover { background: rgba(255,255,255,0.2); }
+
+.footer-text {
+  position: absolute;
+  bottom: 12px; right: 24px;
+  font-size: 9px;
+  color: #555;
+  letter-spacing: 0.1em;
+}
+
+.hotspot-3d {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.hotspot-3d-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #54a9e8;
+  box-shadow: 0 0 10px #54a9e8, 0 0 20px #54a9e8;
+  animation: pulse-dot 2s infinite;
+}
+.hotspot-3d-label {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+.hotspot-3d:hover .hotspot-3d-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(84, 169, 232, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(84, 169, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(84, 169, 232, 0); }
+}
