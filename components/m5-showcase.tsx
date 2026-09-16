@@ -156,7 +156,7 @@ function CameraZoomController({ isZoomed }: { isZoomed: boolean }) {
 
 export function M5Showcase() {
   const [paint, setPaint] = useState('#56616b')
-  const [activeTab, setActiveTab] = useState('Interactive 3D')
+  const [activeTab, setActiveTab] = useState('Overview')
   const [driveMode, setDriveMode] = useState('4WD')
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [engineKey, setEngineKey] = useState<keyof typeof ENGINES>('M5_HYBRID')
